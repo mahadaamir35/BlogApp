@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Show</title>
+    </head>
+
+    <body>
+        
+
+
+
+<h2><%= error %></h2>
+        <h2>
+            <%= success %>
+        </h2>
+
+        <h1>Blog title: <%= blog.title %>
+        </h1>
+        <h1>Owner: <%= blog.author.username %></h1>
+        <h3>
+            <%= blog.text %>
+        </h3>
+        <p>Created on: <%= blog.date %>
+
+        </p>
+
+
+        <a href="/blogs">Back to all Blogs!</a>
+
+        <%  if(currentUser &&  blog.author.equals(currentUser._id)){%>
+        <a href="/blogs/<%= blog._id %>/edit">Edit this blog!</a>
+        <form action="/blogs/<%= blog._id %>?_method=DELETE" method="post">
+            <button>Delete this blog!</button>
+        </form>
+<% } %>
+        <br>
+        <br>
+
+        <% if(currentUser){ %>
+        <h2>Leave a review!</h2>
+        <form action="/blogs/<%= blog._id %>/reviews" method="post">
+            <div>
+                <label for="rating">Rating</label>
+                <input type="range" name="rating" id="rating" min="1" max="5">
+            </div>
+
+            <div>
+                <label for="comment">Add Comment</label>
+                <textarea name="comment" id="comment" cols="30" rows="5" required></textarea>
+            </div>
+            <button>Submit</button>
+
+        </form>
+<% } %>
+        <% for(let review of blog.reviews ) { %>
+            <div style="border: 2px solid black;">
+                <h3>Rating: <%= review.rating %>
+                </h3>
+                <h3>Review Given by: <%= review.author.username %></h3>
+                <h4>Comment: <%= review.comment %>
+                </h4>
+                <% if(currentUser && review.author.equals(currentUser._id)) {%>
+                <form action="/blogs/<%= blog._id %>/reviews/<%= review._id %>?_method=DELETE" method="post">
+                    <button>Delete</button>
+                </form>
+            <% } %>
+            </div>
+            <% } %>
+    </body>
+
+</html>

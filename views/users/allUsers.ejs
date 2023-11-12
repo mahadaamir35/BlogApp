@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All users</title>
+</head>
+<body>
+    <h1>All users</h1>
+     <% for(let user of users) {%>
+        <h1>Username is: <%= user.username %></h1>
+        <h2>Email is: <%= user.email %></h2>
+        
+        <% } %>
+</body>
+</html>

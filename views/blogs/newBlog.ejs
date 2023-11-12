@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Blog</title>
+</head>
+<body>
+    <h3><%= success %></h3>
+    <h1>Create a blog!</h1>
+    <form action="/blogs" method="post">
+        <div>
+        <label for="title">Enter title:</label>
+        <input type="text" name="title" id="title" required>
+    </div>
+
+    <div>
+        <label for="text">Enter text:</label>
+        <input type="text" name="text" id="text" required>
+    </div>
+    <button>Submit Blog</button>
+
+    </form>
+<a href="/blogs">Back to all blogs!</a>
+
+
+</body>
+</html>

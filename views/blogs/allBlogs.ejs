@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogs</title>
+</head>
+<body>
+<nav>
+
+
+
+
+
+    <% if(!currentUser){ %>
+    <a href="/login">Login</a>
+    <a href="/register">Register</a>
+    <% } else { %>
+    <a href="/logout">Logout</a>
+<% } %>
+</nav>
+
+<h1><%= error %></h1>
+    <h1><%= success %></h1>
+
+    <h1>All Blogs</h1>
+
+    <a href="/blogs/New">Create a blog!</a>
+ <% if(currentUser && currentUser.isAdmin) { %>
+    <% for (let blog of blogs) { %>
+        <div>
+        <h2><a href="/blogs/<%= blog._id %>">The blog title is:<%= blog.title %></a></h2>
+       <p>Author is: <%= blog.author.username %></p>
+       <p>The date of creation is: <%= blog.date %></p>
+    <% if(blog.reviews.length) { %>
+       <h2>Average rating is: 
+        <% let sum = 0; %>
+        <% for(let review of blog.reviews) { %>
+  <% sum = sum + review.rating %>
+            <% } %>
+        <% sum = sum / blog.reviews.length %>
+        <% const finalSum = Math.floor(sum) %>
+        <%= finalSum %>
+        </h2>
+        <% }  else {%>
+            <h2>Average rating is: 0</h2>
+            <% } %>
+            
+
+
+        <% } %>
+
+
+    <% } else {%>
+    <% for (let blog of blogs) { %>
+        <h2><a href="/blogs/<%= blog._id %>"><%= blog.title %></a></h2>
+       
+        
+        <% } %>
+        <% } %>
+
+
+
+</body>
+</html>

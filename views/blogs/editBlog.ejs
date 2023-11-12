@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Blog</title>
+</head>
+<body>
+    <h3><%= success %></h3>
+    <h1>Edit blog!</h1>
+    <form action="/blogs/<%= blog._id %>?_method=PUT" method="post">
+        <div>
+        <label for="title">Enter title:</label>
+        <input type="text" name="title" id="title" value="<%= blog.title %>" required>
+    </div>
+
+    <div>
+        <label for="text">Enter text:</label>
+        <input type="text" name="text" id="text" value="<%= blog.text %>" required>
+    </div>
+    <button>Update Blog</button>
+
+    </form>
+<a href="/blogs/<%= blog._id %>">Back to the blog!</a>
+
+
+</body>
+</html>
